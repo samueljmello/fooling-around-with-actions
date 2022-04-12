@@ -18,6 +18,8 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}
     steps:
       - uses: actions/checkout@v1
+      - name: figure out where we are
+        run: pwd; ls
       - name: Install dependencies
         run: npm i
       - name: Build
