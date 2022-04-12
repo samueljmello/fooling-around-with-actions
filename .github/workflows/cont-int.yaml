@@ -1,0 +1,20 @@
+name: Continuous Integration
+on: 
+  - pull_request
+defaults:
+  run:
+    working-directory: ./fooling-around-app
+jobs:
+  buildAndTest:
+    name: Build and Test
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v1
+      - name: Make sure legacy-peer-deps is true
+        run: npm config set legacy-peer-deps true
+      - name: Install Dependencies
+        run: npm i
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm run test --watchAll=false
